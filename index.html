@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lucro Certo MEI — CFO Digital com IA para Pequenos Negócios</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --green:#00D68F;
+  --green-dark:#00A86B;
+  --green-dim:#00D68F22;
+  --green-glow:0 0 40px #00D68F44;
+  --ink:#0A0E0B;
+  --ink-2:#131A14;
+  --ink-3:#1C261D;
+  --surface:#1A2B1C;
+  --muted:#4A6B4C;
+  --text:#E8F5E9;
+  --text-2:#9BB89D;
+  --red:#FF4D4D;
+  --amber:#FFB830;
+  --border:rgba(0,214,143,.15);
+  --radius:12px;
+  --font-display:'Sora',sans-serif;
+  --font-body:'DM Sans',sans-serif;
+  --font-mono:'DM Mono',monospace;
+}
+
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--text);font-family:var(--font-body);font-size:16px;line-height:1.6;overflow-x:hidden}
+
+/* ── NOISE TEXTURE ── */
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;background:rgba(10,14,11,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--font-display);font-weight:800;font-size:1.1rem;color:var(--text);letter-spacing:-.02em}
+.nav-logo span{color:var(--green)}
+.nav-cta{background:var(--green);color:var(--ink);font-family:var(--font-display);font-weight:700;font-size:.85rem;padding:10px 22px;border-radius:8px;border:none;cursor:pointer;transition:all .2s;letter-spacing:.01em}
+.nav-cta:hover{background:#00f5a0;transform:translateY(-1px)}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:120px 24px 80px;text-align:center;position:relative;overflow:hidden}
+.hero-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-60%);width:700px;height:700px;background:radial-gradient(circle,rgba(0,214,143,.12) 0%,transparent 70%);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--green-dim);border:1px solid var(--border);border-radius:100px;padding:6px 16px;font-size:.8rem;font-weight:500;color:var(--green);margin-bottom:28px;letter-spacing:.03em}
+.hero-badge-dot{width:7px;height:7px;background:var(--green);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
+h1{font-family:var(--font-display);font-weight:800;font-size:clamp(2.4rem,6vw,4.2rem);line-height:1.05;letter-spacing:-.04em;color:var(--text);max-width:820px;margin:0 auto 24px}
+h1 .accent{color:var(--green);position:relative}
+h1 .accent::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:3px;background:var(--green);border-radius:2px;opacity:.5}
+.hero-sub{font-size:clamp(1rem,2vw,1.2rem);color:var(--text-2);max-width:580px;margin:0 auto 48px;font-weight:300;line-height:1.7}
+.hero-cta-group{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:60px}
+.btn-primary{background:var(--green);color:var(--ink);font-family:var(--font-display);font-weight:700;font-size:1rem;padding:16px 36px;border-radius:10px;border:none;cursor:pointer;transition:all .25s;letter-spacing:-.01em}
+.btn-primary:hover{background:#00f5a0;transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,214,143,.4)}
+.btn-secondary{background:transparent;color:var(--text);font-family:var(--font-display);font-weight:500;font-size:1rem;padding:16px 32px;border-radius:10px;border:1px solid rgba(255,255,255,.15);cursor:pointer;transition:all .25s}
+.btn-secondary:hover{border-color:var(--green);color:var(--green)}
+.hero-social{display:flex;align-items:center;gap:24px;justify-content:center}
+.hero-social-stat{text-align:center}
+.hero-social-num{font-family:var(--font-display);font-weight:700;font-size:1.4rem;color:var(--text)}
+.hero-social-lbl{font-size:.75rem;color:var(--text-2);letter-spacing:.05em;text-transform:uppercase}
+.hero-divider{width:1px;height:32px;background:var(--border)}
+
+/* ── PAIN SECTION ── */
+.pain{padding:100px 24px;background:var(--ink-2);position:relative}
+.container{max-width:1080px;margin:0 auto}
+.section-label{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--green);font-weight:600;margin-bottom:16px}
+.pain-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;margin-top:60px}
+.pain-list{display:flex;flex-direction:column;gap:16px}
+.pain-item{display:flex;align-items:flex-start;gap:14px;padding:20px;background:rgba(255,77,77,.06);border:1px solid rgba(255,77,77,.15);border-radius:var(--radius)}
+.pain-icon{font-size:1.2rem;flex-shrink:0;margin-top:2px}
+.pain-item h4{font-family:var(--font-display);font-weight:600;font-size:.95rem;color:var(--text);margin-bottom:4px}
+.pain-item p{font-size:.875rem;color:var(--text-2);line-height:1.5}
+.pain-visual{background:var(--ink-3);border:1px solid var(--border);border-radius:16px;padding:32px;position:relative;overflow:hidden}
+.pain-visual::before{content:'';position:absolute;top:0;right:0;width:200px;height:200px;background:radial-gradient(circle,rgba(255,77,77,.08),transparent);pointer-events:none}
+.pv-label{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-2);margin-bottom:20px}
+.pv-number{font-family:var(--font-display);font-weight:800;font-size:3rem;color:var(--red);letter-spacing:-.04em;line-height:1}
+.pv-sub{font-size:.9rem;color:var(--text-2);margin-top:8px;margin-bottom:28px}
+.pv-bar-group{display:flex;flex-direction:column;gap:12px}
+.pv-bar-item{display:flex;flex-direction:column;gap:6px}
+.pv-bar-top{display:flex;justify-content:space-between;font-size:.8rem}
+.pv-bar-bg{height:6px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden}
+.pv-bar-fill{height:100%;border-radius:3px;background:var(--red);opacity:.7}
+
+/* ── SIMULATOR ── */
+.simulator{padding:100px 24px;background:var(--ink);position:relative}
+.sim-wrap{background:var(--ink-2);border:1px solid var(--border);border-radius:20px;padding:48px;max-width:860px;margin:60px auto 0;position:relative;overflow:hidden}
+.sim-wrap::before{content:'';position:absolute;top:-80px;right:-80px;width:300px;height:300px;background:radial-gradient(circle,rgba(0,214,143,.08),transparent);pointer-events:none}
+.sim-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.sim-inputs{display:flex;flex-direction:column;gap:24px}
+.sim-field label{display:block;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--text-2);margin-bottom:10px;font-weight:500}
+.sim-field input,.sim-field select{width:100%;background:var(--ink-3);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:12px 16px;color:var(--text);font-family:var(--font-body);font-size:.95rem;outline:none;transition:border-color .2s}
+.sim-field input:focus,.sim-field select:focus{border-color:var(--green)}
+.sim-field select option{background:var(--ink-3)}
+.sim-result{background:var(--ink-3);border-radius:14px;padding:28px;position:relative}
+.sim-result-header{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-2);margin-bottom:20px}
+.sim-lucro-atual{margin-bottom:16px}
+.sim-lucro-atual .lbl{font-size:.8rem;color:var(--text-2);margin-bottom:4px}
+.sim-lucro-atual .val{font-family:var(--font-display);font-weight:700;font-size:1.8rem;color:var(--red)}
+.sim-lucro-pot{margin-bottom:24px}
+.sim-lucro-pot .lbl{font-size:.8rem;color:var(--text-2);margin-bottom:4px}
+.sim-lucro-pot .val{font-family:var(--font-display);font-weight:700;font-size:2.2rem;color:var(--green)}
+.sim-diff{background:var(--green-dim);border:1px solid var(--border);border-radius:8px;padding:14px;display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.sim-diff-label{font-size:.8rem;color:var(--green)}
+.sim-diff-val{font-family:var(--font-display);font-weight:700;color:var(--green);font-size:1.1rem}
+.sim-opp{display:flex;flex-direction:column;gap:8px}
+.sim-opp-item{display:flex;justify-content:space-between;align-items:center;font-size:.82rem;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.sim-opp-item:last-child{border-bottom:none}
+.sim-opp-name{color:var(--text-2)}
+.sim-opp-val{color:var(--green);font-family:var(--font-mono);font-weight:500}
+.sim-cta{margin-top:24px;width:100%}
+.sim-annual{text-align:center;margin-top:12px;font-size:.82rem;color:var(--text-2)}
+.sim-annual span{color:var(--green);font-weight:600}
+
+/* ── HOW IT WORKS ── */
+.how{padding:100px 24px;background:var(--ink-2)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:60px;position:relative}
+.steps::before{content:'';position:absolute;top:40px;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,var(--green),transparent);opacity:.3}
+.step{background:var(--ink-3);border:1px solid var(--border);border-radius:16px;padding:32px 28px;position:relative;transition:border-color .3s}
+.step:hover{border-color:rgba(0,214,143,.4)}
+.step-num{font-family:var(--font-display);font-weight:800;font-size:.75rem;letter-spacing:.1em;color:var(--green);margin-bottom:20px}
+.step-icon{width:48px;height:48px;background:var(--green-dim);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:16px}
+.step h3{font-family:var(--font-display);font-weight:700;font-size:1.05rem;color:var(--text);margin-bottom:10px;letter-spacing:-.02em}
+.step p{font-size:.875rem;color:var(--text-2);line-height:1.6}
+
+/* ── FEATURES ── */
+.features{padding:100px 24px;background:var(--ink)}
+.features-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:60px}
+.feat{background:var(--ink-2);border:1px solid var(--border);border-radius:16px;padding:32px;transition:all .3s;cursor:default}
+.feat:hover{border-color:rgba(0,214,143,.35);transform:translateY(-3px)}
+.feat-icon{font-size:1.8rem;margin-bottom:16px}
+.feat h3{font-family:var(--font-display);font-weight:700;font-size:1rem;color:var(--text);margin-bottom:10px}
+.feat p{font-size:.875rem;color:var(--text-2);line-height:1.6}
+.feat-tag{display:inline-block;margin-top:14px;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--green);background:var(--green-dim);padding:4px 10px;border-radius:4px;font-weight:600}
+
+/* ── SOCIAL PROOF ── */
+.proof{padding:100px 24px;background:var(--ink-2)}
+.proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:60px}
+.card-proof{background:var(--ink-3);border:1px solid var(--border);border-radius:16px;padding:28px}
+.proof-quote{font-size:.9rem;color:var(--text-2);line-height:1.7;margin-bottom:20px;font-style:italic}
+.proof-quote strong{color:var(--green);font-style:normal}
+.proof-author{display:flex;align-items:center;gap:12px}
+.proof-avatar{width:40px;height:40px;border-radius:50%;background:var(--green-dim);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;font-size:.9rem;color:var(--green)}
+.proof-name{font-size:.875rem;font-weight:500;color:var(--text)}
+.proof-role{font-size:.78rem;color:var(--text-2)}
+.proof-stars{color:var(--green);font-size:.8rem;margin-bottom:12px;letter-spacing:2px}
+
+/* ── PRICING ── */
+.pricing{padding:100px 24px;background:var(--ink)}
+.pricing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:60px}
+.price-card{background:var(--ink-2);border:1px solid var(--border);border-radius:16px;padding:28px;position:relative;transition:all .3s}
+.price-card.featured{border-color:var(--green);background:var(--ink-3)}
+.price-card.featured::before{content:'MAIS POPULAR';position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--green);color:var(--ink);font-family:var(--font-display);font-weight:700;font-size:.65rem;letter-spacing:.1em;padding:4px 12px;border-radius:100px}
+.price-plan{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-2);margin-bottom:16px;font-weight:600}
+.price-val{font-family:var(--font-display);font-weight:800;font-size:2rem;color:var(--text);letter-spacing:-.04em;line-height:1}
+.price-val sup{font-size:.9rem;font-weight:500;vertical-align:super}
+.price-val .period{font-size:.85rem;font-weight:400;color:var(--text-2)}
+.price-desc{font-size:.82rem;color:var(--text-2);margin:12px 0 20px;line-height:1.5}
+.price-divider{height:1px;background:var(--border);margin-bottom:20px}
+.price-features{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+.price-feat{display:flex;align-items:flex-start;gap:8px;font-size:.82rem;color:var(--text-2)}
+.price-feat::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0;margin-top:1px}
+.price-feat.locked{color:var(--muted)}
+.price-feat.locked::before{content:'—';color:var(--muted)}
+.price-btn{width:100%;padding:12px;border-radius:8px;font-family:var(--font-display);font-weight:700;font-size:.85rem;cursor:pointer;transition:all .2s;letter-spacing:.01em}
+.price-btn-outline{background:transparent;border:1px solid rgba(255,255,255,.2);color:var(--text)}
+.price-btn-outline:hover{border-color:var(--green);color:var(--green)}
+.price-btn-solid{background:var(--green);border:none;color:var(--ink)}
+.price-btn-solid:hover{background:#00f5a0}
+
+/* ── WAITLIST ── */
+.waitlist{padding:100px 24px;background:var(--ink-2);text-align:center}
+.waitlist-wrap{max-width:600px;margin:0 auto}
+.waitlist h2{font-family:var(--font-display);font-weight:800;font-size:clamp(1.8rem,4vw,2.8rem);letter-spacing:-.04em;margin-bottom:16px}
+.waitlist p{color:var(--text-2);font-size:1rem;margin-bottom:40px}
+.waitlist-form{display:flex;gap:12px;max-width:480px;margin:0 auto 24px}
+.waitlist-input{flex:1;background:var(--ink-3);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:14px 18px;color:var(--text);font-family:var(--font-body);font-size:.95rem;outline:none;transition:border-color .2s}
+.waitlist-input:focus{border-color:var(--green)}
+.waitlist-input::placeholder{color:var(--muted)}
+.waitlist-count{font-size:.82rem;color:var(--text-2)}
+.waitlist-count strong{color:var(--green)}
+.waitlist-success{display:none;background:var(--green-dim);border:1px solid var(--border);border-radius:10px;padding:20px;margin-top:16px}
+.waitlist-success h4{font-family:var(--font-display);color:var(--green);margin-bottom:6px}
+.waitlist-success p{font-size:.875rem;color:var(--text-2);margin:0}
+
+/* ── FOOTER ── */
+footer{padding:48px 24px;background:var(--ink);border-top:1px solid var(--border);text-align:center}
+.footer-logo{font-family:var(--font-display);font-weight:800;font-size:1.1rem;color:var(--text);margin-bottom:12px}
+.footer-logo span{color:var(--green)}
+footer p{font-size:.82rem;color:var(--muted)}
+
+/* ── TYPOGRAPHY ── */
+h2{font-family:var(--font-display);font-weight:800;font-size:clamp(1.8rem,4vw,2.8rem);letter-spacing:-.04em;line-height:1.1;color:var(--text)}
+h2 .accent{color:var(--green)}
+
+/* ── ANIMATIONS ── */
+.fade-in{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.fade-in.visible{opacity:1;transform:none}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  nav{padding:16px 20px}
+  .pain-grid,.sim-grid,.steps,.features-grid,.proof-grid,.pricing-grid{grid-template-columns:1fr}
+  .steps::before{display:none}
+  .waitlist-form{flex-direction:column}
+  .sim-wrap{padding:28px 20px}
+  .hero-social{flex-wrap:wrap;gap:16px}
+  .hero-divider{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Lucro Certo <span>MEI</span></div>
+  <button class="nav-cta" onclick="document.getElementById('raio-x').scrollIntoView({behavior:'smooth'})">Descobrir meu lucro potencial</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div style="position:relative;z-index:1">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      CFO Digital com Inteligência Artificial
+    </div>
+    <h1>
+      Quanto dinheiro sua empresa está<br>
+      <span class="accent">deixando na mesa</span> todo mês?
+    </h1>
+    <p class="hero-sub">
+      Em menos de 5 minutos, descubra se você está cobrando abaixo do ideal,
+      quanto está perdendo por mês e o plano exato para aumentar seu lucro.
+    </p>
+    <div class="hero-cta-group">
+      <button class="btn-primary" onclick="document.getElementById('raio-x').scrollIntoView({behavior:'smooth'})">
+        Fazer meu Raio-X de Lucro — Grátis
+      </button>
+      <button class="btn-secondary" onclick="document.getElementById('como-funciona').scrollIntoView({behavior:'smooth'})">
+        Ver como funciona
+      </button>
+    </div>
+    <div class="hero-social">
+      <div class="hero-social-stat">
+        <div class="hero-social-num">92%</div>
+        <div class="hero-social-lbl">dos MEIs cobram errado</div>
+      </div>
+      <div class="hero-divider"></div>
+      <div class="hero-social-stat">
+        <div class="hero-social-num">R$2.840</div>
+        <div class="hero-social-lbl">perdidos/mês em média</div>
+      </div>
+      <div class="hero-divider"></div>
+      <div class="hero-social-stat">
+        <div class="hero-social-num">5 min</div>
+        <div class="hero-social-lbl">para o diagnóstico completo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN -->
+<section class="pain">
+  <div class="container">
+    <p class="section-label">O problema</p>
+    <h2>Você trabalha muito e<br>ganha <span class="accent">menos do que merece</span></h2>
+    <div class="pain-grid">
+      <div class="pain-list">
+        <div class="pain-item fade-in">
+          <span class="pain-icon">💸</span>
+          <div>
+            <h4>Preço chutado, não calculado</h4>
+            <p>A maioria dos MEIs cobra "o que o mercado cobra" — sem saber que seus custos reais são maiores que imagina.</p>
+          </div>
+        </div>
+        <div class="pain-item fade-in">
+          <span class="pain-icon">🕳️</span>
+          <div>
+            <h4>Margem invisível</h4>
+            <p>Sem calcular pró-labore, impostos e custos indiretos, você pode estar trabalhando no prejuízo sem perceber.</p>
+          </div>
+        </div>
+        <div class="pain-item fade-in">
+          <span class="pain-icon">📊</span>
+          <div>
+            <h4>Sem controle, sem decisão</h4>
+            <p>Sem dados, você toma decisões no escuro. Não sabe o que dá lucro, o que dá prejuízo, nem onde cortar.</p>
+          </div>
+        </div>
+        <div class="pain-item fade-in">
+          <span class="pain-icon">🔄</span>
+          <div>
+            <h4>Mais trabalho, mesmo dinheiro</h4>
+            <p>Você aumenta o volume, mas o lucro não cresce. Porque o problema não é vender mais — é vender certo.</p>
+          </div>
+        </div>
+      </div>
+      <div class="pain-visual fade-in">
+        <div class="pv-label">Diagnóstico médio dos nossos usuários</div>
+        <div class="pv-number">-R$2.840</div>
+        <div class="pv-sub">perdidos por mês antes de usar o Lucro Certo MEI</div>
+        <div class="pv-bar-group">
+          <div class="pv-bar-item">
+            <div class="pv-bar-top"><span style="color:var(--text-2);font-size:.8rem">Preço abaixo do ideal</span><span style="font-family:var(--font-mono);font-size:.8rem;color:var(--red)">-R$1.420</span></div>
+            <div class="pv-bar-bg"><div class="pv-bar-fill" style="width:65%"></div></div>
+          </div>
+          <div class="pv-bar-item">
+            <div class="pv-bar-top"><span style="color:var(--text-2);font-size:.8rem">Clientes inativos</span><span style="font-family:var(--font-mono);font-size:.8rem;color:var(--red)">-R$840</span></div>
+            <div class="pv-bar-bg"><div class="pv-bar-fill" style="width:38%"></div></div>
+          </div>
+          <div class="pv-bar-item">
+            <div class="pv-bar-top"><span style="color:var(--text-2);font-size:.8rem">Custos não controlados</span><span style="font-family:var(--font-mono);font-size:.8rem;color:var(--red)">-R$580</span></div>
+            <div class="pv-bar-bg"><div class="pv-bar-fill" style="width:26%"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIMULATOR / RAIO-X -->
+<section class="simulator" id="raio-x">
+  <div class="container" style="text-align:center">
+    <p class="section-label">Raio-X de lucro</p>
+    <h2>Descubra seu <span class="accent">potencial real</span><br>em segundos</h2>
+    <p style="color:var(--text-2);max-width:520px;margin:16px auto 0">Preencha os dados do seu negócio e veja na hora quanto você está perdendo — e quanto pode ganhar.</p>
+  </div>
+  <div class="sim-wrap">
+    <div class="sim-grid">
+      <div class="sim-inputs">
+        <div class="sim-field">
+          <label>Qual é o seu segmento?</label>
+          <select id="segmento">
+            <option value="beleza">Beleza e Estética</option>
+            <option value="alimentacao">Alimentação</option>
+            <option value="servicos">Prestação de Serviços</option>
+            <option value="comercio">Comércio / Revenda</option>
+            <option value="tecnologia">Tecnologia / Digital</option>
+            <option value="saude">Saúde e Bem-estar</option>
+            <option value="educacao">Educação / Cursos</option>
+            <option value="outros">Outro</option>
+          </select>
+        </div>
+        <div class="sim-field">
+          <label>Faturamento mensal (R$)</label>
+          <input type="number" id="faturamento" placeholder="Ex: 8000" value="8000" min="500" oninput="calcRaioX()">
+        </div>
+        <div class="sim-field">
+          <label>Quanto você cobra pelo serviço/produto principal?</label>
+          <input type="number" id="preco" placeholder="Ex: 45" value="45" oninput="calcRaioX()">
+        </div>
+        <div class="sim-field">
+          <label>Custos mensais estimados (R$)</label>
+          <input type="number" id="custos" placeholder="Ex: 3500" value="3500" oninput="calcRaioX()">
+        </div>
+        <div class="sim-field">
+          <label>Você inclui seu pró-labore no custo?</label>
+          <select id="prolabore" onchange="calcRaioX()">
+            <option value="nao">Não incluo</option>
+            <option value="sim">Sim, incluo</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <div class="sim-result" id="sim-result">
+          <div class="sim-result-header">Diagnóstico da sua empresa</div>
+          <div class="sim-lucro-atual">
+            <div class="lbl">Lucro atual estimado</div>
+            <div class="val" id="lucro-atual">R$ 1.800</div>
+          </div>
+          <div class="sim-lucro-pot">
+            <div class="lbl">Lucro potencial com ajustes</div>
+            <div class="val" id="lucro-pot">R$ 3.920</div>
+          </div>
+          <div class="sim-diff">
+            <div class="sim-diff-label">Você pode ganhar mais:</div>
+            <div class="sim-diff-val" id="sim-diff">+ R$ 2.120/mês</div>
+          </div>
+          <div class="sim-opp">
+            <div style="font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-2);margin-bottom:8px">Oportunidades identificadas</div>
+            <div class="sim-opp-item" id="opp-1">
+              <span class="sim-opp-name">Ajuste de preço</span>
+              <span class="sim-opp-val" id="opp-1-val">+R$ 980/mês</span>
+            </div>
+            <div class="sim-opp-item" id="opp-2">
+              <span class="sim-opp-name">Pró-labore não incluído</span>
+              <span class="sim-opp-val" id="opp-2-val">+R$ 720/mês</span>
+            </div>
+            <div class="sim-opp-item">
+              <span class="sim-opp-name">Clientes inativos</span>
+              <span class="sim-opp-val" id="opp-3-val">+R$ 420/mês</span>
+            </div>
+          </div>
+          <button class="btn-primary sim-cta" onclick="document.getElementById('lista-espera').scrollIntoView({behavior:'smooth'})">
+            Quero o diagnóstico completo grátis
+          </button>
+          <div class="sim-annual">Impacto anual: <span id="impacto-anual">R$ 25.440</span> a mais no seu bolso</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="como-funciona">
+  <div class="container" style="text-align:center">
+    <p class="section-label">Como funciona</p>
+    <h2>Do diagnóstico ao <span class="accent">lucro real</span><br>em 3 passos</h2>
+  </div>
+  <div class="container">
+    <div class="steps">
+      <div class="step fade-in">
+        <div class="step-num">PASSO 01</div>
+        <div class="step-icon">🔬</div>
+        <h3>Raio-X do seu negócio</h3>
+        <p>Em 5 minutos, a IA analisa seus preços, custos, produtos e histórico. Você vê exatamente onde está perdendo dinheiro — com valores reais, não estimativas vagas.</p>
+      </div>
+      <div class="step fade-in">
+        <div class="step-num">PASSO 02</div>
+        <div class="step-icon">📋</div>
+        <h3>Plano de ação personalizado</h3>
+        <p>O sistema gera um plano com as 3 ações que mais impactam seu lucro. Nada genérico — cada recomendação é baseada nos dados reais da sua empresa.</p>
+      </div>
+      <div class="step fade-in">
+        <div class="step-num">PASSO 03</div>
+        <div class="step-icon">📈</div>
+        <h3>Acompanhe seu crescimento</h3>
+        <p>Execute as correções dentro do app. O CFO Digital monitora seu progresso diariamente e avisa quando surge uma nova oportunidade ou risco.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="container" style="text-align:center">
+    <p class="section-label">O CFO Digital</p>
+    <h2>Tudo que um consultor financeiro faz,<br>no seu <span class="accent">bolso do celular</span></h2>
+  </div>
+  <div class="container">
+    <div class="features-grid">
+      <div class="feat fade-in">
+        <div class="feat-icon">🎯</div>
+        <h3>Precificação Inteligente</h3>
+        <p>Calcule o preço certo de qualquer produto ou serviço em segundos. A IA considera todos os seus custos — incluindo os que você esquece de contar.</p>
+        <span class="feat-tag">Todos os planos</span>
+      </div>
+      <div class="feat fade-in">
+        <div class="feat-icon">🔬</div>
+        <h3>Raio-X de Lucro</h3>
+        <p>Diagnóstico financeiro completo com oportunidades ranqueadas por impacto. Veja em R$ exatos quanto cada problema está custando por mês.</p>
+        <span class="feat-tag">Exclusivo</span>
+      </div>
+      <div class="feat fade-in">
+        <div class="feat-icon">🎯</div>
+        <h3>Meta de Lucro</h3>
+        <p>Defina quanto quer ganhar e acompanhe o progresso diariamente. O sistema calcula quantas vendas você precisa fazer hoje para chegar lá.</p>
+        <span class="feat-tag">PRO+</span>
+      </div>
+      <div class="feat fade-in">
+        <div class="feat-icon">💬</div>
+        <h3>Chat com o CFO Digital</h3>
+        <p>"Posso contratar alguém?" "Quanto devo aumentar meu preço?" Pergunte qualquer coisa sobre seu negócio e receba respostas com os seus números reais.</p>
+        <span class="feat-tag">Premium</span>
+      </div>
+      <div class="feat fade-in">
+        <div class="feat-icon">📊</div>
+        <h3>DRE Automática</h3>
+        <p>Receita, custos, lucro bruto e líquido gerados automaticamente todo mês. Sabe o resultado do seu negócio sem precisar de contador.</p>
+        <span class="feat-tag">Premium</span>
+      </div>
+      <div class="feat fade-in">
+        <div class="feat-icon">🏆</div>
+        <h3>Score Empresarial</h3>
+        <p>0 a 100 pontos avaliando precificação, finanças, crescimento e controle. Acompanhe sua evolução de Bronze até Black mês a mês.</p>
+        <span class="feat-tag">PRO+</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section class="proof">
+  <div class="container" style="text-align:center">
+    <p class="section-label">Resultados reais</p>
+    <h2>Empreendedores que <span class="accent">descobriram</span><br>o que estavam perdendo</h2>
+  </div>
+  <div class="container">
+    <div class="proof-grid">
+      <div class="card-proof fade-in">
+        <div class="proof-stars">★★★★★</div>
+        <p class="proof-quote">"Descobri que cobrava R$45 por manicure e meu custo real era R$41. Estava me matando de trabalhar para lucrar R$4 por atendimento. Hoje cobro R$65 e tenho <strong>margem de 37%</strong>."</p>
+        <div class="proof-author">
+          <div class="proof-avatar">MS</div>
+          <div>
+            <div class="proof-name">Maria Silva</div>
+            <div class="proof-role">Manicure · Goiânia, GO</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-proof fade-in">
+        <div class="proof-stars">★★★★★</div>
+        <p class="proof-quote">"Tinha medo de aumentar o preço e perder clientes. O diagnóstico mostrou que eu podia cobrar <strong>40% a mais</strong> e ainda estar abaixo da média de Florianópolis. Aumentei. Não perdi nenhum cliente."</p>
+        <div class="proof-author">
+          <div class="proof-avatar">JP</div>
+          <div>
+            <div class="proof-name">João Pereira</div>
+            <div class="proof-role">Designer Freelancer · Florianópolis, SC</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-proof fade-in">
+        <div class="proof-stars">★★★★★</div>
+        <p class="proof-quote">"Em 3 meses usando o app, meu lucro saiu de R$1.200 para R$3.800 por mês. A maior virada foi descobrir que <strong>tinha 24 clientes inativos</strong> que eu nem estava ligando."</p>
+        <div class="proof-author">
+          <div class="proof-avatar">AC</div>
+          <div>
+            <div class="proof-name">Ana Costa</div>
+            <div class="proof-role">Nutricionista · São Paulo, SP</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing">
+  <div class="container" style="text-align:center">
+    <p class="section-label">Planos</p>
+    <h2>Menos que o custo de<br><span class="accent">1 erro de precificação</span></h2>
+    <p style="color:var(--text-2);margin-top:12px;font-size:.95rem">Cancele quando quiser. Sem fidelidade.</p>
+  </div>
+  <div class="container">
+    <div class="pricing-grid">
+      <div class="price-card fade-in">
+        <div class="price-plan">Gratuito</div>
+        <div class="price-val">R$<span>0</span><span class="period">/mês</span></div>
+        <div class="price-desc">Para descobrir se o produto é para você.</div>
+        <div class="price-divider"></div>
+        <div class="price-features">
+          <div class="price-feat">3 produtos/serviços</div>
+          <div class="price-feat">Calculadora de preços</div>
+          <div class="price-feat">Raio-X básico (1x/mês)</div>
+          <div class="price-feat locked">Fluxo de caixa</div>
+          <div class="price-feat locked">Chat IA</div>
+        </div>
+        <button class="price-btn price-btn-outline" onclick="document.getElementById('lista-espera').scrollIntoView({behavior:'smooth'})">Começar grátis</button>
+      </div>
+      <div class="price-card fade-in">
+        <div class="price-plan">PRO</div>
+        <div class="price-val"><sup>R$</sup>19<span class="period">,90/mês</span></div>
+        <div class="price-desc">Controle financeiro completo.</div>
+        <div class="price-divider"></div>
+        <div class="price-features">
+          <div class="price-feat">Produtos ilimitados</div>
+          <div class="price-feat">Fluxo de caixa completo</div>
+          <div class="price-feat">Meta de Lucro</div>
+          <div class="price-feat">Raio-X semanal</div>
+          <div class="price-feat">Score empresarial</div>
+          <div class="price-feat locked">Chat IA ilimitado</div>
+          <div class="price-feat locked">DRE automática</div>
+        </div>
+        <button class="price-btn price-btn-outline" onclick="document.getElementById('lista-espera').scrollIntoView({behavior:'smooth'})">Entrar na lista</button>
+      </div>
+      <div class="price-card featured fade-in">
+        <div class="price-plan">Premium</div>
+        <div class="price-val"><sup>R$</sup>49<span class="period">,90/mês</span></div>
+        <div class="price-desc">A experiência CFO Digital completa.</div>
+        <div class="price-divider"></div>
+        <div class="price-features">
+          <div class="price-feat">Tudo do PRO</div>
+          <div class="price-feat">Chat IA ilimitado</div>
+          <div class="price-feat">DRE automática</div>
+          <div class="price-feat">Benchmark de mercado</div>
+          <div class="price-feat">Diagnóstico IA mensal</div>
+          <div class="price-feat">Exportação PDF/Excel</div>
+          <div class="price-feat">Suporte prioritário</div>
+        </div>
+        <button class="price-btn price-btn-solid" onclick="document.getElementById('lista-espera').scrollIntoView({behavior:'smooth'})">Quero o Premium</button>
+      </div>
+      <div class="price-card fade-in">
+        <div class="price-plan">Business</div>
+        <div class="price-val"><sup>R$</sup>99<span class="period">,90/mês</span></div>
+        <div class="price-desc">Para negócios em crescimento.</div>
+        <div class="price-divider"></div>
+        <div class="price-features">
+          <div class="price-feat">Tudo do Premium</div>
+          <div class="price-feat">Até 3 usuários</div>
+          <div class="price-feat">Multi-empresa</div>
+          <div class="price-feat">Painel do contador</div>
+          <div class="price-feat">Acesso à API</div>
+          <div class="price-feat">SLA 99,9%</div>
+        </div>
+        <button class="price-btn price-btn-outline" onclick="document.getElementById('lista-espera').scrollIntoView({behavior:'smooth'})">Entrar na lista</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAITLIST -->
+<section class="waitlist" id="lista-espera">
+  <div class="waitlist-wrap">
+    <p class="section-label" style="text-align:center">Lista de espera</p>
+    <h2>Seja um dos primeiros<br>a <span class="accent">transformar seu lucro</span></h2>
+    <p>O Lucro Certo MEI está em fase de lançamento. Entre na lista de espera e garanta acesso antecipado com condições especiais.</p>
+    <div class="waitlist-form">
+      <input type="email" class="waitlist-input" id="email-input" placeholder="seu@email.com">
+      <button class="btn-primary" onclick="submitWaitlist()">Garantir vaga</button>
+    </div>
+    <div class="waitlist-count">
+      Junte-se a <strong id="count-display">247</strong> empreendedores na lista de espera
+    </div>
+    <div class="waitlist-success" id="success-msg">
+      <h4>✓ Você está na lista!</h4>
+      <p>Em breve você receberá um e-mail com seu acesso antecipado e condições exclusivas de fundador.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Lucro Certo <span>MEI</span></div>
+  <p style="margin-top:8px">O CFO Digital com IA para microempreendedores do Brasil</p>
+  <p style="margin-top:16px;font-size:.75rem">© 2025 Lucro Certo MEI · Todos os direitos reservados</p>
+</footer>
+
+<script>
+// ── SIMULATOR ──────────────────────────────────────
+function calcRaioX(){
+  const fat = parseFloat(document.getElementById('faturamento').value)||8000;
+  const custos = parseFloat(document.getElementById('custos').value)||3500;
+  const prolabore = document.getElementById('prolabore').value;
+  const segmento = document.getElementById('segmento').value;
+  
+  const MARGEM_IDEAL = {beleza:.32,alimentacao:.28,servicos:.38,comercio:.22,tecnologia:.45,saude:.40,educacao:.50,outros:.30};
+  const margemIdeal = MARGEM_IDEAL[segmento]||.32;
+  
+  let custosReais = custos;
+  let opProLabore = 0;
+  if(prolabore === 'nao'){
+    opProLabore = Math.min(fat * .25, 2500);
+    custosReais += opProLabore;
+  }
+  
+  const lucroAtual = Math.max(0, fat - custos);
+  const receitaIdeal = custosReais / (1 - margemIdeal);
+  const lucroIdeal = receitaIdeal * margemIdeal;
+  
+  const opPreco = Math.max(0, lucroIdeal - lucroAtual - opProLabore) * .6;
+  const opClientes = fat * .08;
+  const diff = opPreco + opProLabore + opClientes;
+  const lucroPoencial = lucroAtual + diff;
+  
+  document.getElementById('lucro-atual').textContent = 'R$ ' + Math.round(lucroAtual).toLocaleString('pt-BR');
+  document.getElementById('lucro-pot').textContent = 'R$ ' + Math.round(lucroPoencial).toLocaleString('pt-BR');
+  document.getElementById('sim-diff').textContent = '+ R$ ' + Math.round(diff).toLocaleString('pt-BR') + '/mês';
+  document.getElementById('opp-1-val').textContent = '+R$ ' + Math.round(opPreco).toLocaleString('pt-BR') + '/mês';
+  document.getElementById('opp-2-val').textContent = prolabore==='nao' ? '+R$ '+Math.round(opProLabore).toLocaleString('pt-BR')+'/mês' : '✓ Já incluído';
+  document.getElementById('opp-3-val').textContent = '+R$ ' + Math.round(opClientes).toLocaleString('pt-BR') + '/mês';
+  document.getElementById('impacto-anual').textContent = 'R$ ' + Math.round(diff*12).toLocaleString('pt-BR');
+}
+
+// ── WAITLIST ──────────────────────────────────────
+let count = 247;
+function submitWaitlist(){
+  const email = document.getElementById('email-input').value;
+  if(!email || !email.includes('@')){
+    document.getElementById('email-input').style.borderColor='var(--red)';
+    document.getElementById('email-input').placeholder='Digite um e-mail válido';
+    return;
+  }
+  count++;
+  document.getElementById('count-display').textContent = count;
+  document.getElementById('success-msg').style.display = 'block';
+  document.getElementById('email-input').value = '';
+  document.getElementById('email-input').style.borderColor = 'var(--green)';
+}
+
+// ── INTERSECTION OBSERVER (fade-in) ──────────────
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible')}});
+},{threshold:.15});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+
+// ── INIT ──────────────────────────────────────────
+calcRaioX();
+document.querySelectorAll('input[type=number],select').forEach(el=>{
+  el.addEventListener('change',calcRaioX);
+});
+</script>
+</body>
+</html>
