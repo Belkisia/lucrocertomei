@@ -35,7 +35,7 @@ html{scroll-behavior:smooth}
 body{font-family:var(--font);color:var(--text);background:var(--white);overflow-x:hidden;font-size:16px;line-height:1.6}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(248,250,252,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 40px;height:68px;display:flex;align-items:center;justify-content:space-between}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(248,250,252,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 40px;height:72px;display:flex;align-items:center;justify-content:space-between}
 .nav-logo img{height:36px;object-fit:contain}
 .nav-links{display:flex;align-items:center;gap:32px}
 .nav-links a{font-size:.875rem;font-weight:500;color:var(--text-2);text-decoration:none;transition:color .2s}
@@ -251,14 +251,14 @@ footer p{font-size:.78rem;color:rgba(255,255,255,.25)}
 
 <!-- NAV -->
 <nav>
-  <a href="#" style="text-decoration:none;display:flex;align-items:center;gap:10px">
-  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect width="36" height="36" rx="8" fill="#0F3D91"/>
-    <text x="4" y="26" font-family="Arial Black,sans-serif" font-weight="900" font-size="20" fill="white">L</text>
-    <text x="19" y="26" font-family="Arial Black,sans-serif" font-weight="900" font-size="20" fill="#00C853">C</text>
-  </svg>
-  <span style="font-family:sans-serif;font-weight:800;font-size:1rem;color:#fff;letter-spacing:-.01em">LUCRO <span style="color:#00C853">CERTO</span> <span style="font-weight:400;opacity:.6;font-size:.85rem">MEI</span></span>
-</a>
+  <a href="#" style="text-decoration:none;display:flex;align-items:center" aria-label="Lucro Certo MEI"><svg viewBox="0 0 183 44" height="44" width="183" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Lucro Certo MEI">
+  <rect width="44" height="44" rx="9" fill="#0F3D91"/>
+  <path d="M11 9 L11 34 L32 34 L32 29 L18 29 L18 9 Z" fill="white"/>
+  <path d="M46 12 C46 12 53 12 53 22 C53 31 46 31 46 31" stroke="#00C853" stroke-width="4" stroke-linecap="round" fill="none"/>
+  <text x="55" y="19" font-family="Plus Jakarta Sans,Arial,sans-serif" font-weight="800" font-size="13" fill="white" letter-spacing="-0.5">LUCRO</text>
+  <text x="55" y="35" font-family="Plus Jakarta Sans,Arial,sans-serif" font-weight="800" font-size="13" fill="#00C853" letter-spacing="-0.5">CERTO</text>
+  <text x="102" y="35" font-family="Plus Jakarta Sans,Arial,sans-serif" font-weight="400" font-size="11" fill="rgba(255,255,255,0.5)">MEI</text>
+</svg></a>
   <div class="nav-links">
     <a href="#como-funciona">Como funciona</a>
     <a href="#funcionalidades">Funcionalidades</a>
@@ -299,14 +299,14 @@ footer p{font-size:.78rem;color:rgba(255,255,255,.25)}
     </div>
     <div class="hero-card fi">
       <div class="hc-header">
-        <div style="display:flex;align-items:center;gap:8px">
-  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect width="28" height="28" rx="6" fill="#0F3D91"/>
-    <text x="3" y="20" font-family="Arial Black,sans-serif" font-weight="900" font-size="15" fill="white">L</text>
-    <text x="15" y="20" font-family="Arial Black,sans-serif" font-weight="900" font-size="15" fill="#00C853">C</text>
-  </svg>
-  <span style="font-family:sans-serif;font-weight:800;font-size:.85rem;color:#fff">LUCRO <span style="color:#00C853">CERTO</span> MEI</span>
-</div>
+        <div class="hc-header-logo"><svg viewBox="0 0 125 30" height="30" width="125" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Lucro Certo MEI">
+  <rect width="30" height="30" rx="6" fill="#0F3D91"/>
+  <path d="M8 6 L8 23 L21 23 L21 20 L12 20 L12 6 Z" fill="white"/>
+  <path d="M32 8 C32 8 36 8 36 15 C36 21 32 21 32 21" stroke="#00C853" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <text x="37" y="13" font-family="Plus Jakarta Sans,Arial,sans-serif" font-weight="800" font-size="9" fill="white" letter-spacing="-0.5">LUCRO</text>
+  <text x="37" y="24" font-family="Plus Jakarta Sans,Arial,sans-serif" font-weight="800" font-size="9" fill="#00C853" letter-spacing="-0.5">CERTO</text>
+  <text x="69" y="24" font-family="Plus Jakarta Sans,Arial,sans-serif" font-weight="400" font-size="8" fill="rgba(255,255,255,0.45)">MEI</text>
+</svg></div>
         <span class="hc-badge">Ao vivo</span>
       </div>
       <div class="hc-score">
@@ -626,14 +626,14 @@ footer p{font-size:.78rem;color:rgba(255,255,255,.25)}
 
 <!-- FOOTER -->
 <footer>
-  <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:12px">
-  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect width="36" height="36" rx="8" fill="#0F3D91"/>
-    <text x="4" y="26" font-family="Arial Black,sans-serif" font-weight="900" font-size="20" fill="white">L</text>
-    <text x="19" y="26" font-family="Arial Black,sans-serif" font-weight="900" font-size="20" fill="#00C853">C</text>
-  </svg>
-  <span style="font-family:sans-serif;font-weight:800;font-size:1.1rem;color:rgba(255,255,255,.6)">LUCRO <span style="color:#00C853">CERTO</span> MEI</span>
-</div>
+  <div style="display:flex;justify-content:center;margin-bottom:16px"><svg viewBox="0 0 166 40" height="40" width="166" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Lucro Certo MEI">
+  <rect width="40" height="40" rx="8" fill="#0F3D91"/>
+  <path d="M10 8 L10 31 L29 31 L29 26 L16 26 L16 8 Z" fill="white"/>
+  <path d="M42 11 C42 11 48 11 48 20 C48 28 42 28 42 28" stroke="#00C853" stroke-width="4" stroke-linecap="round" fill="none"/>
+  <text x="50" y="17" font-family="Plus Jakarta Sans,Arial,sans-serif" font-weight="800" font-size="12" fill="white" letter-spacing="-0.5">LUCRO</text>
+  <text x="50" y="32" font-family="Plus Jakarta Sans,Arial,sans-serif" font-weight="800" font-size="12" fill="#00C853" letter-spacing="-0.5">CERTO</text>
+  <text x="93" y="32" font-family="Plus Jakarta Sans,Arial,sans-serif" font-weight="400" font-size="10" fill="rgba(255,255,255,0.4)">MEI</text>
+</svg></div>
   <p>O CFO Digital do Microempreendedor Brasileiro</p>
   <p style="margin-top:10px">© 2025 Lucro Certo MEI · Todos os direitos reservados · contato@lucrocertomei.com.br</p>
 </footer>
